@@ -5,11 +5,22 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
+var hbs = require('hbs')
+var moment = require('moment')
+var db = require('./database')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+db.sections.find({}, (err, res) => {
+  app.locals.sections = res
+})
+
+hbs.registerHelper('time', function (time) {
+  return moment(time).format("ddd, MMM Do YYYY, h:mm:ss a")
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

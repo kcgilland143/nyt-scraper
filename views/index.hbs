@@ -1,2 +1,7 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+{{#each articles}}
+<a href="{{link}}"></a><h1>{{{heading}}}</h1></a>
+<p>{{{summary}}}</p>
+<small>{{byline}}, {{time timestamp}}</small>
+{{/each}}

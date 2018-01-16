@@ -1,7 +1,20 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h2 class="page-title" data-title="{{title}}">{{title}}
+  <button class="btn btn-default scrape-button">Scrape</button>
+</h2>
+<ul>
 {{#each articles}}
-<a href="{{link}}"></a><h1>{{{heading}}}</h1></a>
-<p>{{{summary}}}</p>
-<small>{{byline}}, {{time timestamp}}</small>
+  <li class="article" data-id="{{_id}}">
+    <a href="{{link}}"><h3>{{{heading}}}</h3></a>
+    <p>{{{summary}}}</p>
+    <small>{{byline}}, {{time timestamp}}</small>
+    <ul class="comments">
+    {{#each comments}}
+      <li class="comment">{{comment}}&nbsp;</li>
+      <small class="comment-timestamp">{{time timestamp}}</small>
+    {{/each}}
+    </ul>
+    <input type="text" class="comment-text"/>
+    <button class="btn btn-primary submit-comment">Add Comment</button>
+  </li>
 {{/each}}
+</ul>

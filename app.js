@@ -19,7 +19,9 @@ db.sections.find({}, (err, res) => {
 })
 
 hbs.registerHelper('time', function (time) {
-  return moment(time).format("ddd, MMM Do YYYY, h:mm:ss a")
+  let ftime = moment.unix(time).format("ddd, MMM Do YYYY, h:mm:ss a")
+  console.log(time, ftime)
+  return ftime
 })
 
 // view engine setup

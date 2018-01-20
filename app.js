@@ -9,14 +9,11 @@ var hbs = require('hbs')
 var moment = require('moment')
 var db = require('./database')
 
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-
-db.sections.find({}, (err, res) => {
-  app.locals.sections = res
-})
 
 hbs.registerHelper('time', function (time) {
   let ftime = moment.unix(time).format("ddd, MMM Do YYYY, h:mm:ss a")

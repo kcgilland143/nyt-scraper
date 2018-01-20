@@ -95,9 +95,14 @@ function scrapeSections($) {
   var results = {}
 
   $('ul.mini-navigation-menu').find('li a').each((i, element) => {
-    var name = scraper.sanitize($(element).text())
-    if (!results[name]) {
-      results[name] = { link: $(element).attr('href') }
+    const name = $(element).text()
+    const s_name = scraper.sanitize(name)
+    const link = $(element).attr('href')
+    if (!results[s_name]) {
+      results[s_name] = { 
+        name: name,
+        sanitized_name: s_name,
+        link: link }
     }
   })
   return results

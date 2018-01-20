@@ -8,14 +8,15 @@
   src="http://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
   </head>
   <body>
-    <header><h1>New York Times {Scraped}</h1></header>
+    <header><h1>New York Times <a href="/">{Scraped}<a></h1></header>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <ul class="nav navbar-nav">
           {{#each sections}}
-            <li><a href="/scraped/{{name}}">{{name}}</a></li>
+            <li><a href="/scraped/{{sanitized_name}}" data-name="{{sanitized_name}}">{{name}}</a></li>
           {{/each}}
         </ul>
       </div>

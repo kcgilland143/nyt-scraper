@@ -1,20 +1,26 @@
 <h2 class="page-title" data-title="{{title}}">{{title}}
   <button class="btn btn-default scrape-button">Scrape</button>
 </h2>
-<ul>
+<ul class="articles media-list">
 {{#each articles}}
-  <li class="article" data-id="{{_id}}">
-    <a href="{{link}}"><h3>{{{heading}}}</h3></a>
-    <p>{{{summary}}}</p>
-    <small>{{byline}}, {{time timestamp}}</small>
-    <ul class="comments">
-    {{#each comments}}
-      <li class="comment">{{comment}}&nbsp;</li>
-      <small class="comment-timestamp">{{time timestamp}}</small>
-    {{/each}}
-    </ul>
+  <li class="article media" data-id="{{_id}}">
+    <div class="media-body">
+      <a href="{{link}}" target="_blank"><h3 class="media-heading">{{{heading}}}</h3></a>
+      <p>{{{summary}}}</p>
+      <small>{{byline}}, {{time timestamp}}</small>
+      <ul class="comments list-group">
+      {{#each comments}}
+        <li class="comment list-group-item clearfix">
+          <span class="comment">{{comment}}</span>
+          &nbsp;
+          <button class="btn btn-danger comment-delete pull-right"><span class="glyphicon glyphicon-trash"></button>
+          <small class="comment-timestamp pull-right">{{time timestamp}}&nbsp;</small>
+        </li>
+      {{/each}}
+      </ul>
+    </div>
     <input type="text" class="comment-text"/>
-    <button class="btn btn-primary submit-comment">Add Comment</button>
+    <button class="btn btn-primary submit-comment"><span class="glyphicon glyphicon-plus"></button>
   </li>
 {{/each}}
 </ul>

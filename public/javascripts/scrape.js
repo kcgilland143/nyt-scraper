@@ -11,32 +11,35 @@ function scrapeHandler(event) {
   .done(function( msg ) {
     const len = msg.length
     const articles = $('ul.articles')
-    alert( "Scraped " + msg.length + " New Articles!" );
-    for (let i = msg.length-1; i >= 0; i--) {
-      // console.log(msg[i])
-      articles.prepend(createArticle(msg[i]))
-    }
+    textFlash($('.flashed-message'),"Scraped " + msg.length + " New Articles!", 2000);
+    msg.forEach(function (article) {
+      articles.prepend(createArticle(article))
+    })
   });
 }
 
 function createArticle(article) {
   let html = ""
-  let articleContainer = $('<li>').attr('class', 'article').attr('data-id', article._id)
-  let heading = $('<h3>').text(article.heading)
+  let articleContainer = $('<li>').attr('class', 'article media').attr('data-id', article._id)
+  let container = $('<div>').attr('class', 'media-body')
+  let heading = $('<h3>').attr('class','media-heading').text(article.heading)
   let link = $('<a>').attr('href', article.link).attr('target', '_blank')
   link.append(heading)
   let timestamp = moment.unix(article.timestamp).format("ddd, MMM Do YYYY, h:mm:ss a")
   let byline = $('<small>').text(article.byline + ', ' + timestamp)
   let summary = $('<p>').html(article.summary)
-  let comments = $('<ul>').attr('class', 'comments')
+  let comments = $('<ul>').attr('class', 'comments list-group')
   let input = $('<input>').attr('type', 'text').attr('class', 'comment-text')
-  let button = $('<button>').attr('class','btn btn-primary submit-comment').text('Add Comment')
+  let button = $('<button>').attr('class','btn btn-primary submit-comment')
+    .append('<span class="glyphicon glyphicon-plus">')
   button.on('click', submitComment)
-  articleContainer
+  container
     .append(link)
     .append(summary)
     .append(byline)
     .append(comments)
+  articleContainer
+    .append(container)
     .append(input)
     .append(button)
   return articleContainer

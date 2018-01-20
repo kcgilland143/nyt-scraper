@@ -8,7 +8,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   db.articles.find({}).sort({timestamp:-1}).limit(10, (err, result) => {
     if (err) { return next(err) }
-    res.render('index', { title: 'Recent Articles' , articles: result});
+    res.render('index', { title: 'Recent Articles' , root: true, articles: result});
   })
 });
 

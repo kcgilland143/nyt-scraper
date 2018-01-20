@@ -1,5 +1,7 @@
 <h2 class="page-title" data-title="{{title}}">{{title}}
-  <button class="btn btn-default scrape-button">Scrape</button>
+  {{#unless root}}
+  <button class="btn btn-default scrape-button">Scrape</button>&nbsp;<small class="flashed-message text-success" style="display:none"></small>
+  {{/unless}}
 </h2>
 <ul class="articles media-list">
 {{#each articles}}

@@ -8,7 +8,6 @@ function deleteComment(e) {
   timestamp = moment(timestamp, "ddd, MMM Do YYYY, h:mm:ss a").unix()
   var article = commentWrapper.parent().parent().parent()
   var articleId = article.attr('data-id')
-  console.log(article.html(), articleId)
   var pageTitle = $('.page-title').attr('data-title')
   var comment = commentWrapper.find('.comment').text()
   if (comment) { comment = comment.trim() }

@@ -6,11 +6,9 @@ const db = mongo('mydb', ['sections', 'articles'])
 module.exports = db
 
 db.sections.find({}, (err, sel) => {
-  console.log(sel)
   if (!sel.length) {
     scraper.getSections()
     .then((sections) => {
-      console.log(sections)
       const sectionNames = Object.keys(sections)
       sectionNames.forEach(key => {
         db.sections.insert(sections[key])
@@ -22,5 +20,4 @@ db.sections.find({}, (err, sel) => {
       })
     })
   }
-  db.getCollectionNames(console.log)
 })

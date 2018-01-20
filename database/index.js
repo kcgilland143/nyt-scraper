@@ -1,7 +1,7 @@
 const mongo = require('mongojs')
 const scraper = require('../scraper')
 
-const db = mongo('mydb', ['sections', 'articles'])
+const db = mongo(process.env.PROD_MONGO, ['sections', 'articles'])
 
 module.exports = db
 
